@@ -1,0 +1,23 @@
+basic.forever(function () {
+    let lautstark= input.soundLevel();
+
+    if (lautstark>5) {
+        calliBot2.motorStop(C2Motor.beide, C2Stop.Bremsen)  	
+    }
+    else{
+        if(calliBot2.readLineSensor(C2Sensor.links, C2SensorStatus.hell)){
+            calliBot2.motorStop(C2Motor.rechts, C2Stop.Bremsen) 
+            calliBot2.motor(C2Motor.links, C2Dir.vorwärts, 30)
+            basic.pause(10)
+        }
+        else if(calliBot2.readLineSensor(C2Sensor.rechts, C2SensorStatus.hell)){
+            calliBot2.motorStop(C2Motor.links, C2Stop.Bremsen) 
+             calliBot2.motor(C2Motor.rechts, C2Dir.vorwärts, 30)
+             basic.pause(10)
+        }
+        else{
+            calliBot2.motor(C2Motor.beide, C2Dir.vorwärts, 30)
+            basic.pause(10)
+        }
+    }
+})
